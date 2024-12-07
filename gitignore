@@ -1,0 +1,68 @@
+# .gitignore
+
+# Environments
+.env
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+logs/
+*.log
+
+# Data
+data/
+*.csv
+*.sqlite
+*.db
+
+# IDE
+.vscode/
+*.code-workspace
+.idea/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Docker
+.docker/
+
+# Trading
+backups/
+grafana/
+secrets/
+
+# Config
+config/*.json
+!config/config.example.json
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Local
+*.env.local 
+*.env.development.local
+*.env.test.local
+*.env.production.local

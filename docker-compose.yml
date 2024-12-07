@@ -1,0 +1,73 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  trading-bot:
+    build: .
+    container_name: bitmex-trading-bot
+    restart: unless-stopped
+    ports:
+      - "8050:8050"  # Dashboard
+      - "8000:8000"  # API
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    environment:
+      - TZ=UTC
+    networks:
+      - bot-network
+
+  monitoring:
+    image: grafana/grafana:latest
+    container_name: bot-monitoring
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    depends_on:
+      - trading-bot
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge# docker-compose.yml
+
+version: '3.8'
+
+services:
+  trading-bot:
+    build: .
+    container_name: bitmex-trading-bot
+    restart: unless-stopped
+    ports:
+      - "8050:8050"  # Dashboard
+      - "8000:8000"  # API
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    environment:
+      - TZ=UTC
+    networks:
+      - bot-network
+
+  monitoring:
+    image: grafana/grafana:latest
+    container_name: bot-monitoring
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    depends_on:
+      - trading-bot
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge
